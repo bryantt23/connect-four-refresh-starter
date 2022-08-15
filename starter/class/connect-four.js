@@ -87,6 +87,102 @@ class ConnectFour {
       }
     }
 
+    // down and right
+    for (let j = 0; j < grid[0].length; j++) {
+      let xCount = 0,
+        oCount = 0;
+      let row = 0,
+        col = j;
+      while (row < grid.length && col < grid[0].length) {
+        const r = grid[row++][col++];
+        if (r === 'X') {
+          oCount = 0;
+          xCount++;
+          if (xCount === 4) {
+            return 'X';
+          }
+        } else if (r === 'O') {
+          xCount = 0;
+          oCount++;
+          if (oCount === 4) {
+            return 'O';
+          }
+        }
+      }
+    }
+
+    for (let i = 1; i < grid.length; i++) {
+      let xCount = 0,
+        oCount = 0;
+      let row = i,
+        col = 0;
+      while (row < grid.length && col < grid[0].length) {
+        const r = grid[row++][col++];
+        if (r === 'X') {
+          oCount = 0;
+          xCount++;
+          if (xCount === 4) {
+            return 'X';
+          }
+        } else if (r === 'O') {
+          xCount = 0;
+          oCount++;
+          if (oCount === 4) {
+            return 'O';
+          }
+        }
+      }
+    }
+    //down and right
+
+    //down and left
+    for (let j = 0; j < grid[0].length; j++) {
+      let xCount = 0,
+        oCount = 0;
+      let row = 0,
+        col = j;
+      while (row < grid.length && col >= 0) {
+        const r = grid[row++][col--];
+        if (r === 'X') {
+          oCount = 0;
+          xCount++;
+          if (xCount === 4) {
+            return 'X';
+          }
+        } else if (r === 'O') {
+          xCount = 0;
+          oCount++;
+          if (oCount === 4) {
+            return 'O';
+          }
+        }
+      }
+    }
+
+    for (let i = 1; i < grid.length; i++) {
+      let xCount = 0,
+        oCount = 0;
+      let row = i,
+        col = grid[0].length - 1;
+      while (row < grid.length && col >= 0) {
+        const r = grid[row++][col--];
+        if (r === 'X') {
+          oCount = 0;
+          xCount++;
+          if (xCount === 4) {
+            return 'X';
+          }
+        } else if (r === 'O') {
+          xCount = 0;
+          oCount++;
+          if (oCount === 4) {
+            return 'O';
+          }
+        }
+      }
+    }
+    //down and left
+
     if (allEmpty) {
       return false;
     }
