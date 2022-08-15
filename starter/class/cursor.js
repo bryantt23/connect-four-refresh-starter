@@ -1,7 +1,6 @@
-const Screen = require("./screen");
+const Screen = require('./screen');
 
 class Cursor {
-
   constructor(numRows, numCols) {
     this.numRows = numRows;
     this.numCols = numCols;
@@ -11,7 +10,6 @@ class Cursor {
 
     this.gridColor = 'black';
     this.cursorColor = 'yellow';
-
   }
 
   resetBackgroundColor() {
@@ -24,13 +22,29 @@ class Cursor {
 
   left() {
     // Move cursor left
+    if (this.col > 0) {
+      this.col--;
+    }
   }
 
   right() {
     // Move cursor right
+    if (this.col < this.numCols - 1) {
+      this.col++;
+    }
   }
 
-}
+  down() {
+    if (this.row < this.numRows - 1) {
+      this.row++;
+    }
+  }
 
+  up() {
+    if (this.row > 0) {
+      this.row--;
+    }
+  }
+}
 
 module.exports = Cursor;
