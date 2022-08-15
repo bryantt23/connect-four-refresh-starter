@@ -46,6 +46,47 @@ class ConnectFour {
       }
     }
 
+    for (const row of grid) {
+      let xCount = 0,
+        oCount = 0;
+      for (const r of row) {
+        if (r === 'X') {
+          oCount = 0;
+          xCount++;
+          if (xCount === 4) {
+            return 'X';
+          }
+        } else if (r === 'O') {
+          xCount = 0;
+          oCount++;
+          if (oCount === 4) {
+            return 'O';
+          }
+        }
+      }
+    }
+
+    for (let j = 0; j < grid[0].length; j++) {
+      let xCount = 0,
+        oCount = 0;
+      for (let i = 0; i < grid.length; i++) {
+        const r = grid[i][j];
+        if (r === 'X') {
+          oCount = 0;
+          xCount++;
+          if (xCount === 4) {
+            return 'X';
+          }
+        } else if (r === 'O') {
+          xCount = 0;
+          oCount++;
+          if (oCount === 4) {
+            return 'O';
+          }
+        }
+      }
+    }
+
     if (allEmpty) {
       return false;
     }

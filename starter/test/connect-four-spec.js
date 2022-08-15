@@ -17,7 +17,6 @@ describe('Connect Four', function () {
 
     expect(ConnectFour.checkWin(grid)).to.be.false;
   });
-  /*
   it('recognizes horizontal wins', function () {
     grid = [
       [' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -66,6 +65,7 @@ describe('Connect Four', function () {
     expect(ConnectFour.checkWin(grid)).to.equal('O');
   });
 
+  /*
   it('recognizes diagonal downward wins', function () {
     grid = [
       [' ', ' ', ' ', ' ', ' ', ' ', ' '],
