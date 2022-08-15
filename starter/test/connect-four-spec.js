@@ -1,118 +1,121 @@
-// const { expect } = require('chai');
+const { expect } = require('chai');
 
-// const ConnectFour = require("../class/connect-four.js");
+const ConnectFour = require('../class/connect-four.js');
 
-// describe ('Connect Four', function () {
+describe('Connect Four', function () {
+  let grid;
 
-//   let grid;
+  it('records empty grid as no winner', function () {
+    grid = [
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    ];
 
-//   it('records empty grid as no winner', function () {
+    expect(ConnectFour.checkWin(grid)).to.be.false;
+  });
+  /*
+  it('recognizes horizontal wins', function () {
+    grid = [
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', 'X', 'X', 'X', 'X', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    ];
 
-//     grid = [[' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' ']]
+    expect(ConnectFour.checkWin(grid)).to.equal('X');
 
-//     expect(ConnectFour.checkWin(grid)).to.be.false;
+    grid = [
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      ['O', 'O', 'O', 'O', ' ', ' ', ' ']
+    ];
 
-//   });
+    expect(ConnectFour.checkWin(grid)).to.equal('O');
+  });
 
-//   it('recognizes horizontal wins', function () {
+  it('recognizes vertical wins', function () {
+    grid = [
+      [' ', ' ', ' ', ' ', ' ', ' ', 'X'],
+      [' ', ' ', ' ', ' ', ' ', ' ', 'X'],
+      [' ', ' ', ' ', ' ', ' ', ' ', 'X'],
+      [' ', ' ', ' ', ' ', ' ', ' ', 'X'],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    ];
 
-//     grid = [[' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             [' ','X','X','X','X',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' ']]
+    expect(ConnectFour.checkWin(grid)).to.equal('X');
 
-//     expect(ConnectFour.checkWin(grid)).to.equal('X');
+    grid = [
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      ['O', ' ', ' ', ' ', ' ', ' ', ' '],
+      ['O', ' ', ' ', ' ', ' ', ' ', ' '],
+      ['O', ' ', ' ', ' ', ' ', ' ', ' '],
+      ['O', ' ', ' ', ' ', ' ', ' ', ' ']
+    ];
 
-//     grid = [[' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             ['O','O','O','O',' ',' ',' ']]
+    expect(ConnectFour.checkWin(grid)).to.equal('O');
+  });
 
-//     expect(ConnectFour.checkWin(grid)).to.equal('O');
+  it('recognizes diagonal downward wins', function () {
+    grid = [
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', 'X', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', 'X', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', 'X', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', 'X', ' ']
+    ];
 
-//   });
+    expect(ConnectFour.checkWin(grid)).to.equal('X');
+  });
 
-//   it('recognizes vertical wins', function () {
+  it('recognizes diagonal upward wins', function () {
+    grid = [
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', 'O'],
+      [' ', ' ', ' ', ' ', ' ', 'O', ' '],
+      [' ', ' ', ' ', ' ', 'O', ' ', ' '],
+      [' ', ' ', ' ', 'O', ' ', ' ', ' ']
+    ];
 
-//     grid = [[' ',' ',' ',' ',' ',' ','X'],
-//             [' ',' ',' ',' ',' ',' ','X'],
-//             [' ',' ',' ',' ',' ',' ','X'],
-//             [' ',' ',' ',' ',' ',' ','X'],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' ']]
+    expect(ConnectFour.checkWin(grid)).to.equal('O');
+  });
 
-//     expect(ConnectFour.checkWin(grid)).to.equal('X');
+  it('recognizes ties', function () {
+    grid = [
+      ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
+      ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
+      ['O', 'X', 'O', 'X', 'O', 'X', 'O'],
+      ['O', 'X', 'O', 'X', 'O', 'X', 'O'],
+      ['O', 'X', 'O', 'X', 'O', 'X', 'O'],
+      ['X', 'O', 'X', 'O', 'X', 'O', 'X']
+    ];
 
-//     grid = [[' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             ['O',' ',' ',' ',' ',' ',' '],
-//             ['O',' ',' ',' ',' ',' ',' '],
-//             ['O',' ',' ',' ',' ',' ',' '],
-//             ['O',' ',' ',' ',' ',' ',' ']]
+    expect(ConnectFour.checkWin(grid)).to.equal('T');
+  });
 
-//     expect(ConnectFour.checkWin(grid)).to.equal('O');
+  it('recognizes if there is no win yet', function () {
+    grid = [
+      ['X', 'O', 'X', ' ', 'X', 'X', 'X'],
+      ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
+      ['O', 'X', 'O', 'X', 'O', 'X', 'O'],
+      ['O', 'X', 'O', 'X', 'O', 'X', 'O'],
+      ['O', 'X', 'O', 'X', 'O', 'X', 'O'],
+      ['X', 'O', 'X', 'O', 'X', 'O', 'X']
+    ];
 
-//   });
-
-//   it('recognizes diagonal downward wins', function () {
-
-//     grid = [[' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ','X',' ',' ',' ',' '],
-//             [' ',' ',' ','X',' ',' ',' '],
-//             [' ',' ',' ',' ','X',' ',' '],
-//             [' ',' ',' ',' ',' ','X',' ']]
-
-//     expect(ConnectFour.checkWin(grid)).to.equal('X');
-
-//   });
-
-//   it('recognizes diagonal upward wins', function () {
-
-//     grid = [[' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ',' '],
-//             [' ',' ',' ',' ',' ',' ','O'],
-//             [' ',' ',' ',' ',' ','O',' '],
-//             [' ',' ',' ',' ','O',' ',' '],
-//             [' ',' ',' ','O',' ',' ',' ']]
-
-//     expect(ConnectFour.checkWin(grid)).to.equal('O');
-
-//   });
-
-//   it('recognizes ties', function () {
-
-//     grid = [['X','O','X','O','X','O','X'],
-//             ['X','O','X','O','X','O','X'],
-//             ['O','X','O','X','O','X','O'],
-//             ['O','X','O','X','O','X','O'],
-//             ['O','X','O','X','O','X','O'],
-//             ['X','O','X','O','X','O','X']]
-
-//     expect(ConnectFour.checkWin(grid)).to.equal('T');
-
-//   });
-
-//   it('recognizes if there is no win yet', function () {
-
-//     grid = [['X','O','X',' ','X','X','X'],
-//             ['X','O','X','O','X','O','X'],
-//             ['O','X','O','X','O','X','O'],
-//             ['O','X','O','X','O','X','O'],
-//             ['O','X','O','X','O','X','O'],
-//             ['X','O','X','O','X','O','X']]
-
-//     expect(ConnectFour.checkWin(grid)).to.be.false;
-
-//   });
-
-// });
+    expect(ConnectFour.checkWin(grid)).to.be.false;
+  });
+  */
+});

@@ -1,18 +1,18 @@
-const Screen = require("./screen");
-const Cursor = require("./cursor");
+const Screen = require('./screen');
+const Cursor = require('./cursor');
 
 class ConnectFour {
-
   constructor() {
+    this.playerTurn = 'O';
 
-    this.playerTurn = "O";
-
-    this.grid = [[' ',' ',' ',' ',' ',' ',' '],
-                 [' ',' ',' ',' ',' ',' ',' '],
-                 [' ',' ',' ',' ',' ',' ',' '],
-                 [' ',' ',' ',' ',' ',' ',' '],
-                 [' ',' ',' ',' ',' ',' ',' '],
-                 [' ',' ',' ',' ',' ',' ',' ']]
+    this.grid = [
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    ];
 
     this.cursor = new Cursor(6, 7);
 
@@ -29,16 +29,26 @@ class ConnectFour {
 
   // Remove this
   static testCommand() {
-    console.log("TEST COMMAND");
+    console.log('TEST COMMAND');
   }
 
   static checkWin(grid) {
-
     // Return 'X' if player X wins
     // Return 'O' if player O wins
     // Return 'T' if the game is a tie
     // Return false if the game has not ended
+    let allEmpty = true;
+    for (const row of grid) {
+      for (const r of row) {
+        if (r !== ' ') {
+          allEmpty = false;
+        }
+      }
+    }
 
+    if (allEmpty) {
+      return false;
+    }
   }
 
   static endGame(winner) {
@@ -52,7 +62,6 @@ class ConnectFour {
     Screen.render();
     Screen.quit();
   }
-
 }
 
 module.exports = ConnectFour;
