@@ -91,7 +91,6 @@ describe('Connect Four', function () {
     expect(ConnectFour.checkWin(grid)).to.equal('O');
   });
 
-  /*
   it('recognizes ties', function () {
     grid = [
       ['X', 'O', 'X', 'O', 'X', 'O', 'X'],
@@ -117,5 +116,4 @@ describe('Connect Four', function () {
 
     expect(ConnectFour.checkWin(grid)).to.be.false;
   });
-  */
 });

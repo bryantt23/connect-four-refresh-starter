@@ -37,13 +37,21 @@ class ConnectFour {
     // Return 'O' if player O wins
     // Return 'T' if the game is a tie
     // Return false if the game has not ended
-    let allEmpty = true;
+    let allEmpty = true,
+      hasEmpty = false;
     for (const row of grid) {
       for (const r of row) {
         if (r !== ' ') {
           allEmpty = false;
         }
+        if (r === ' ') {
+          hasEmpty = true;
+        }
       }
+    }
+
+    if (allEmpty) {
+      return false;
     }
 
     for (const row of grid) {
@@ -62,6 +70,9 @@ class ConnectFour {
           if (oCount === 4) {
             return 'O';
           }
+        } else {
+          xCount = 0;
+          oCount = 0;
         }
       }
     }
@@ -83,6 +94,9 @@ class ConnectFour {
           if (oCount === 4) {
             return 'O';
           }
+        } else {
+          xCount = 0;
+          oCount = 0;
         }
       }
     }
@@ -107,6 +121,9 @@ class ConnectFour {
           if (oCount === 4) {
             return 'O';
           }
+        } else {
+          xCount = 0;
+          oCount = 0;
         }
       }
     }
@@ -130,6 +147,9 @@ class ConnectFour {
           if (oCount === 4) {
             return 'O';
           }
+        } else {
+          xCount = 0;
+          oCount = 0;
         }
       }
     }
@@ -155,6 +175,9 @@ class ConnectFour {
           if (oCount === 4) {
             return 'O';
           }
+        } else {
+          xCount = 0;
+          oCount = 0;
         }
       }
     }
@@ -178,14 +201,19 @@ class ConnectFour {
           if (oCount === 4) {
             return 'O';
           }
+        } else {
+          xCount = 0;
+          oCount = 0;
         }
       }
     }
     //down and left
 
-    if (allEmpty) {
-      return false;
+    if (!hasEmpty) {
+      return 'T';
     }
+
+    return false;
   }
 
   static endGame(winner) {
