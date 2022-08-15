@@ -36,9 +36,7 @@ describe('Cursor', function () {
     expect([cursor.row, cursor.col]).to.deep.equal([0, 0]);
   });
 
-  /*
   it('processes right inputs', function () {
-
     cursor.right();
     expect([cursor.row, cursor.col]).to.deep.equal([0, 1]);
 
@@ -50,7 +48,6 @@ describe('Cursor', function () {
   });
 
   it('processes left inputs', function () {
-
     cursor.left();
     expect([cursor.row, cursor.col]).to.deep.equal([0, 0]);
 
@@ -60,5 +57,4 @@ describe('Cursor', function () {
     cursor.left();
     expect([cursor.row, cursor.col]).to.deep.equal([0, 0]);
   });
-*/
 });
